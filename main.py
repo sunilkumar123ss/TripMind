@@ -68,3 +68,14 @@ def plan(request):
                                   "activities": total - base_cost}}
     return {"feasible": best is not None, "itinerary": best, "candidates_examined": examined,
             "reason": "optimal within supplied finite catalog" if best else "no catalog combination satisfies all constraints"}
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--input", type=Path, default=Path(__file__).with_name("example.json"))
+    args = parser.parse_args()
+    try: print(json.dumps(plan(json.loads(args.input.read_text())), indent=2))
+    except (ValueError, OSError, TypeError, KeyError) as exc: parser.error(str(exc))
+
+
+if __name__ == "__main__": main()
