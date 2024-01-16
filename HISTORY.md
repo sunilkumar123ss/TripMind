@@ -4,7 +4,7 @@ This reference implementation and all of the following milestone commits were pr
 
 **Every recorded author and committer date in this timeline is synthetic. These dates are not evidence that the code was written, tested, deployed, or used professionally in the past.**
 
-This snapshot is milestone 5 of 17. It is an incomplete tutorial stage; source, fixtures, tests, the CLI, and automation are introduced progressively.
+This snapshot is milestone 6 of 17. It is an incomplete tutorial stage; source, fixtures, tests, the CLI, and automation are introduced progressively.
 
 The progression decomposes already-completed October 2026 code into meaningful additions. It is not recovered original development history. Publication time is separate from the synthetic Git timestamps.
 
@@ -17,7 +17,7 @@ The progression decomposes already-completed October 2026 code into meaningful a
 | 3 | 2023-08-06T18:25:55+05:30 | Optimize the finite travel catalog under budget and day constraints (present) |
 | 4 | 2023-09-24T12:57:47+05:30 | Add synthetic fixtures for the documented example (present) |
 | 5 | 2023-11-12T19:36:46+05:30 | Expose the command-line interface and default demonstration (present) |
-| 6 | 2024-01-16T12:08:57+05:30 | Cover optimal feasible solution and establish the test harness (later stage) |
+| 6 | 2024-01-16T12:08:57+05:30 | Cover optimal feasible solution and establish the test harness (present) |
 | 7 | 2024-03-08T17:21:05+05:30 | Cover infeasible budget (later stage) |
 | 8 | 2024-04-15T19:36:02+05:30 | Cover required category is enforced (later stage) |
 | 9 | 2024-06-27T18:01:03+05:30 | Cover no two activities on same day (later stage) |
