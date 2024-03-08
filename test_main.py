@@ -14,3 +14,7 @@ class PlannerTests(unittest.TestCase):
         self.assertEqual(out["total_cents"], 43500)
         self.assertEqual(out["activities"], ["museum", "coastal-walk"])
         self.assertEqual(sum(out["costs"].values()), out["total_cents"])
+
+    def test_infeasible_budget(self):
+        self.data["budget_cents"] = 1
+        self.assertFalse(plan(self.data)["feasible"])
