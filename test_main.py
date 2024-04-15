@@ -18,3 +18,7 @@ class PlannerTests(unittest.TestCase):
     def test_infeasible_budget(self):
         self.data["budget_cents"] = 1
         self.assertFalse(plan(self.data)["feasible"])
+
+    def test_required_category_is_enforced(self):
+        self.data["required_categories"] = ["spaceflight"]
+        self.assertIsNone(plan(self.data)["itinerary"])
