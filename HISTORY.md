@@ -4,7 +4,7 @@ This reference implementation and all of the following milestone commits were pr
 
 **Every recorded author and committer date in this timeline is synthetic. These dates are not evidence that the code was written, tested, deployed, or used professionally in the past.**
 
-This snapshot is milestone 8 of 17. It is an incomplete tutorial stage; source, fixtures, tests, the CLI, and automation are introduced progressively.
+This snapshot is milestone 9 of 17. It is an incomplete tutorial stage; source, fixtures, tests, the CLI, and automation are introduced progressively.
 
 The progression decomposes already-completed October 2026 code into meaningful additions. It is not recovered original development history. Publication time is separate from the synthetic Git timestamps.
 
@@ -20,7 +20,7 @@ The progression decomposes already-completed October 2026 code into meaningful a
 | 6 | 2024-01-16T12:08:57+05:30 | Cover optimal feasible solution and establish the test harness (present) |
 | 7 | 2024-03-08T17:21:05+05:30 | Cover infeasible budget (present) |
 | 8 | 2024-04-15T19:36:02+05:30 | Cover required category is enforced (present) |
-| 9 | 2024-06-27T18:01:03+05:30 | Cover no two activities on same day (later stage) |
+| 9 | 2024-06-27T18:01:03+05:30 | Cover no two activities on same day (present) |
 | 10 | 2024-07-07T12:28:22+05:30 | Cover non destination options are excluded (later stage) |
 | 11 | 2024-08-02T18:20:46+05:30 | Cover order does not change tie break (later stage) |
 | 12 | 2024-12-03T11:08:10+05:30 | Cover invalid money and duplicate id rejected (later stage) |

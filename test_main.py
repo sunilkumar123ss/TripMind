@@ -22,3 +22,9 @@ class PlannerTests(unittest.TestCase):
     def test_required_category_is_enforced(self):
         self.data["required_categories"] = ["spaceflight"]
         self.assertIsNone(plan(self.data)["itinerary"])
+
+    def test_no_two_activities_on_same_day(self):
+        self.data["budget_cents"] = 100000
+        selected = plan(self.data)["itinerary"]["activities"]
+        days = [a["day"] for a in self.data["activities"] if a["id"] in selected]
+        self.assertEqual(len(days), len(set(days)))
