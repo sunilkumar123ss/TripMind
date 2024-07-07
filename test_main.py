@@ -28,3 +28,7 @@ class PlannerTests(unittest.TestCase):
         selected = plan(self.data)["itinerary"]["activities"]
         days = [a["day"] for a in self.data["activities"] if a["id"] in selected]
         self.assertEqual(len(days), len(set(days)))
+
+    def test_non_destination_options_are_excluded(self):
+        self.data["flights"][0]["destination"] = "Elsewhere"
+        self.assertEqual(plan(self.data)["itinerary"]["flight"], "flight-flex")
