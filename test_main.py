@@ -32,3 +32,8 @@ class PlannerTests(unittest.TestCase):
     def test_non_destination_options_are_excluded(self):
         self.data["flights"][0]["destination"] = "Elsewhere"
         self.assertEqual(plan(self.data)["itinerary"]["flight"], "flight-flex")
+
+    def test_order_does_not_change_tie_break(self):
+        other = copy.deepcopy(self.data)
+        for key in ("flights","hotels","activities"): other[key].reverse()
+        self.assertEqual(plan(self.data)["itinerary"], plan(other)["itinerary"])
