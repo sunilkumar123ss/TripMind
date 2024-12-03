@@ -37,3 +37,10 @@ class PlannerTests(unittest.TestCase):
         other = copy.deepcopy(self.data)
         for key in ("flights","hotels","activities"): other[key].reverse()
         self.assertEqual(plan(self.data)["itinerary"], plan(other)["itinerary"])
+
+    def test_invalid_money_and_duplicate_id_rejected(self):
+        self.data["budget_cents"] = True
+        with self.assertRaises(ValueError): plan(self.data)
+        self.data["budget_cents"] = 50000
+        self.data["flights"].append(copy.deepcopy(self.data["flights"][0]))
+        with self.assertRaises(ValueError): plan(self.data)
