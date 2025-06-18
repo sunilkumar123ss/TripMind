@@ -44,3 +44,10 @@ class PlannerTests(unittest.TestCase):
         self.data["budget_cents"] = 50000
         self.data["flights"].append(copy.deepcopy(self.data["flights"][0]))
         with self.assertRaises(ValueError): plan(self.data)
+
+    def test_day_out_of_range_rejected(self):
+        self.data["activities"][0]["day"] = 9
+        with self.assertRaises(ValueError): plan(self.data)
+
+
+if __name__ == "__main__": unittest.main()
