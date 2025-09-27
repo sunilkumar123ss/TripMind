@@ -4,7 +4,7 @@ This reference implementation and all of the following milestone commits were pr
 
 **Every recorded author and committer date in this timeline is synthetic. These dates are not evidence that the code was written, tested, deployed, or used professionally in the past.**
 
-This snapshot is milestone 13 of 17. It is an incomplete tutorial stage; source, fixtures, tests, the CLI, and automation are introduced progressively.
+This snapshot is milestone 14 of 17. It is an incomplete tutorial stage; source, fixtures, tests, the CLI, and automation are introduced progressively.
 
 The progression decomposes already-completed October 2026 code into meaningful additions. It is not recovered original development history. Publication time is separate from the synthetic Git timestamps.
 
@@ -25,7 +25,7 @@ The progression decomposes already-completed October 2026 code into meaningful a
 | 11 | 2024-08-02T18:20:46+05:30 | Cover order does not change tie break (present) |
 | 12 | 2024-12-03T11:08:10+05:30 | Cover invalid money and duplicate id rejected (present) |
 | 13 | 2025-06-18T17:40:38+05:30 | Cover day out of range rejected (present) |
-| 14 | 2025-09-27T13:44:48+05:30 | Describe package metadata and default verification arguments (later stage) |
+| 14 | 2025-09-27T13:44:48+05:30 | Describe package metadata and default verification arguments (present) |
 | 15 | 2025-10-20T18:06:42+05:30 | Add the isolated test, demo and help verifier (later stage) |
 | 16 | 2025-11-03T16:32:31+05:30 | Run the repository verifier in continuous integration (later stage) |
 | 17 | 2026-03-30T16:37:23+05:30 | Document usage, limitations and the disclosed reconstructed timeline (later stage) |

@@ -1,0 +1,8 @@
+{
+  "slug": "TripMind",
+  "title": "TripMind \u2014 Constrained Travel Optimizer",
+  "description": "Bounded exact itinerary optimization with integer budgets, daily activity constraints and transparent preference scores.",
+  "category": "cv",
+  "demo_args": [],
+  "expected_exit": 0
+}
