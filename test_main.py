@@ -49,5 +49,39 @@ class PlannerTests(unittest.TestCase):
         self.data["activities"][0]["day"] = 9
         with self.assertRaises(ValueError): plan(self.data)
 
+    def test_same_day_catalog_uses_valid_daily_choices(self):
+        for group, prefix, count in (("flights", "flight", 20), ("hotels", "hotel", 20),
+                                     ("activities", "activity", 12)):
+            template = self.data[group][0]
+            self.data[group] = [dict(template, id=f"{prefix}-{i:02}", cost_cents=100, score=i)
+                                for i in range(count)]
+        result = plan(self.data)
+        self.assertEqual(result["candidates_examined"], 5200)
+        self.assertEqual(result["itinerary"]["flight"], "flight-19")
+        self.assertEqual(result["itinerary"]["hotel"], "hotel-19")
+        self.assertEqual(result["itinerary"]["activities"], ["activity-11"])
+        self.assertEqual(result["itinerary"]["score"], 49)
+        self.assertEqual(result["itinerary"]["total_cents"], 400)
+
+    def test_independent_days_still_enforce_search_budget(self):
+        self.data["nights"] = 11
+        for group in ("flights", "hotels"):
+            template = self.data[group][0]
+            self.data[group] = [dict(template, id=f"{group}-{i}") for i in range(20)]
+        template = self.data["activities"][0]
+        self.data["activities"] = [dict(template, id=f"activity-{i}", day=i + 1)
+                                   for i in range(12)]
+        with self.assertRaisesRegex(ValueError, "500000 candidate budget"):
+            plan(self.data)
+
+    def test_no_activity_days_still_produce_a_candidate(self):
+        self.data["required_categories"] = []
+        self.data["activities"] = []
+        result = plan(self.data)
+        self.assertTrue(result["feasible"])
+        self.assertEqual(result["itinerary"]["activities"], [])
+        self.assertEqual(result["itinerary"]["score"], 11)
+        self.assertEqual(result["candidates_examined"], 4)
+
 
 if __name__ == "__main__": unittest.main()

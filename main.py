@@ -3,6 +3,7 @@
 import argparse
 import itertools
 import json
+import math
 from pathlib import Path
 
 
@@ -44,16 +45,20 @@ def plan(request):
     flights, hotels, activities = groups
     if len(activities) > 12 or len(flights) > 20 or len(hotels) > 20:
         raise ValueError("catalog exceeds bounded solver limits")
-    if len(flights) * len(hotels) * (2 ** len(activities)) > 500000:
+    activities_by_day = {}
+    for activity in activities:
+        activities_by_day.setdefault(activity["day"], []).append(activity)
+    daily_options = [[None] + activities_by_day[day] for day in sorted(activities_by_day)]
+    activity_combinations = math.prod(len(options) for options in daily_options)
+    if len(flights) * len(hotels) * activity_combinations > 500000:
         raise ValueError("search exceeds 500000 candidate budget")
     best, best_key, examined = None, None, 0
     for flight, hotel in itertools.product(flights, hotels):
         base_cost = flight["cost_cents"] + nights * hotel["cost_cents"]
         if base_cost > budget: continue
-        for bits in range(2 ** len(activities)):
+        for daily_choice in itertools.product(*daily_options):
             examined += 1
-            chosen = [a for i, a in enumerate(activities) if bits & (1 << i)]
-            if len({a["day"] for a in chosen}) != len(chosen): continue
+            chosen = [activity for activity in daily_choice if activity is not None]
             if not set(required).issubset({a["category"] for a in chosen}): continue
             total = base_cost + sum(a["cost_cents"] for a in chosen)
             if total > budget: continue

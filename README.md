@@ -27,11 +27,11 @@ The default fixture is resolved beside the script, so the default demo works fro
 
 The default catalog produces score **20**, total **43,500 cents**, and **6,500 cents remaining**: `flight-flex`, `stay-view`, `museum` and `coastal-walk`. These are synthetic fixture results, not provider prices or measured travel quality.
 
-The solver exhaustively checks its finite catalog. Limits of 20 flights, 20 hotels, 12 activities and 500,000 candidate combinations make the computation explicit and bounded. An infeasible request returns `feasible: false` with no invented itinerary.
+The solver exhaustively checks its finite catalog, choosing either no activity or one activity for each day. It never enumerates combinations with conflicting activities on the same day. Limits of 20 flights, 20 hotels, 12 activities and 500,000 day-compatible candidate combinations make the computation explicit and bounded. For example, 12 activities on one day yield 13 choices rather than 4,096 subsets. `candidates_examined` counts those day-compatible candidates for flight/hotel pairs whose base cost fits the budget, before checking categories and activity costs. An infeasible request returns `feasible: false` with no invented itinerary.
 
 ## Tests and limits
 
-Eight tests cover the optimal fixture result, insufficient budget, required categories, daily conflicts, destination filtering, stable tie-breaking and invalid inputs. The solver's optimality applies only to the supplied options and scoring model.
+Eleven tests cover the optimal fixture result, insufficient budget, required categories, daily conflicts, destination filtering, stable tie-breaking, invalid inputs, dense same-day catalogs, the search bound and trips without activities. The solver's optimality applies only to the supplied options and scoring model.
 
 This reference has no dates, time zones, visa rules, transfer times, live availability, booking, LLM, MCP or provider integration. Scores are caller-defined preferences, not probabilities or objective quality measures. Add those constraints before using a similar model for an actual itinerary.
 
